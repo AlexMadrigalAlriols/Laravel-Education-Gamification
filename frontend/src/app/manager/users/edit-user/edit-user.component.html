@@ -1,0 +1,62 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+    <app-navbar [user_details]="user_data"></app-navbar>
+
+    <div class="main">
+        <div class="container">
+            <div class="card">
+                <h1 class="text-white">Editing {{editing_data.nick}}</h1>
+                <img src="{{editing_data.profile_img}}" width="125" alt="profile image" class="rounded-circle mb-3 mt-3">
+            <form (ngSubmit)="onSubmit()" [formGroup]="form">
+                <div class="form-floating mb-3">
+                    <input class="form-control" [ngClass]="(form.controls['nick'].invalid && form.controls['nick'].touched ? 'is-invalid' : '')" id="nick" placeholder="..." type="text" formControlName="nick" name="nick" ngModel="{{editing_data.nick}}">
+                    <label for="nick">Nick</label>
+                    <div id="validationNick" class="invalid-feedback">
+                        Must be at least 6 characters.
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" [ngClass]="(form.controls['name'].invalid && form.controls['name'].touched ? 'is-invalid' : '')" id="name" placeholder="..." type="text" formControlName="name" name="name" ngModel="{{editing_data.name}}">
+                    <label for="name">Name</label>
+                    <div id="validationName" class="invalid-feedback">
+                        Must be at least 4 characters.
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="last_name" placeholder="..." type="text" formControlName="last_name" name="last_name" ngModel="{{editing_data.last_name}}">
+                    <label for="last_name">Last Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" [ngClass]="(form.controls['email'].invalid && form.controls['email'].touched ? 'is-invalid' : '')" id="email" placeholder="..." type="email" formControlName="email" name="email" ngModel="{{editing_data.email}}">
+                    <label for="email">Email</label>
+                    <div id="validationEmail" class="invalid-feedback">
+                        Invalid Email Address
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <select ngModel="{{editing_data.role}}" [ngClass]="(form.controls['role'].invalid && form.controls['role'].touched ? 'is-invalid' : '')" id="role" formControlName="role" class="form-select form-control ">
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="college_manager">College Manager</option>
+                    </select>
+                    <label for="role">Choose the Role</label>
+                    <div id="validationRole" class="invalid-feedback">
+                        Choose A Valid Role
+                    </div>
+                </div>
+                <div class="form-floating mb-3 custom-file">
+                    <input type="file" id="img" formControlName="img" class="form-control" (change)="uploadImage($event)">
+                    <label for="img">Profile Image</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="birth_date" placeholder="..." type="date" formControlName="birth_date" name="birth_date" ngModel="{{editing_data.birth_date}}">
+                    <label for="birth_date">Birth Date</label>
+                </div>
+                <button class="btn btn-login" type="submit" [disabled]="form.invalid">Save</button>
+                <a class="btn btn-exit" href="/manager/user/{{editing_data.id_user}}">Cancel</a>
+            </form>
+        </div>
+        </div>
+        </div>
+</main>

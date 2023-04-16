@@ -1,0 +1,31 @@
+<div class="login-container">
+    <div class="container m-auto">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form" autocomplete="off" >
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="login-card mt-4 ">
+                        <div class="card-body fondo-amarillo">
+                            <img class="logo" src="/assets/img/logo.png" alt="Logo">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="emailInput" name="email" placeholder="name@example.com" formControlName="email"/>
+                                <label for="emailInput">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="passwordInput" placeholder="password" formControlName="password"/>
+                                <label for="passwordInput">Password</label>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="error == 'email'">
+                                A user with that email already exists
+                            </div>
+                            <div class="alert alert-danger" *ngIf="error == 'username'">
+                                A user with that username already exists
+                            </div>
+                            <button type="submit" class="btn btn-login w-100 mt-1">Login</button>
+                            <p class="purpul text-center mt-2">Need an account? <a href="/register">Access here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+<app-navbar [user_details]="user_data"></app-navbar>
+<div class="main">
+    <div class="container">
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="login-card mt-4 ">
+              <div class="card-body fondo-amarillo">
+                <div class="title">
+                    <h1 *ngIf="id_college == 0">Create College</h1>
+                    <h1 *ngIf="id_college != 0">Edit {{college_data.college_name}}</h1>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" [ngClass]="(form.controls['college_name'].invalid && form.controls['college_name'].touched ? 'is-invalid' : '')" id="course_name" placeholder="..." ngModel="{{college_data.college_name}}" formControlName="college_name" class="form-control">
+                    <label for="course_name">College Name</label>
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Must be at least 3 characters.
+                    </div>
+                </div>
+                <div class="form-floating mb-3 custom-file">
+                    <input type="file" id="img" ngModel="{{college_data.logo}}" formControlName="logo" class="form-control">
+                    <label for="img">College Image</label>
+                </div>
+                <div class="buttons">
+                  <button class="btn btn-login" type="submit" *ngIf="id_college != 0" [disabled]="alreadySubmit || form.invalid">Save</button>
+                  <button class="btn btn-login" type="submit" *ngIf="id_college == 0" [disabled]="alreadySubmit">Create</button>
+                  <a class="btn btn-exit" href="/manager">Cancel</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

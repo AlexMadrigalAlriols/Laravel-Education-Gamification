@@ -1,0 +1,22 @@
+
+
+.vertical-center {
+    font-family: 'Helsinki', sans-serif;
+    color: var(--white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.vertical-center h1 {
+    font-size: 100px;
+    text-shadow: 1px 1px 2px #fff;
+}
+
+.vertical-center h2 {
+    font-size: 30px;
+    text-shadow: 1px 1px 2px #fff;
+}

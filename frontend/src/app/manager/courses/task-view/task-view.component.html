@@ -1,0 +1,96 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+    <app-navbar [user_details]="user_data"></app-navbar>
+
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="titleFlex">
+                    <div class="flexing">
+                        <a href="/manager/course/{{id_course}}/tasks"><i class="fa-solid fa-angle-left fa-2xl"></i></a> 
+                        <h1 class="text-white">{{task_data.title}}</h1>   
+                    </div>
+                    <button class="btn btn-login" (click)="changeViewSubmit(true)">Nuevo Intento</button>
+                </div>
+                <div class="desc">
+                    <h6 *ngIf="task_data.description">Description</h6>
+                    <p *ngIf="task_data.description">{{task_data.description}}</p>
+                </div>
+
+                <div class="task" *ngIf="task_data.type == 'task'">
+                    <div class="taskInfo">
+                        <p>Fecha de entrega: 14/15/2002</p>
+                        <p>Peso: 10%</p>
+                        <p>Disponible después de 6 de mar en 17:10</p>
+                        <div class="enun">
+                            <span>Enunciado: </span><a href="#">Nombre.pdf</a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="exam" *ngIf="task_data.type == 'exam'">
+                    <div class="flex2">
+                        <div class="time">
+                            <span>20 min</span>
+                            <p>Limit Time</p>
+                        </div>
+                        <div class="date">
+                            <span>16/1/2023 13:00</span>
+                            <p>Limit Date</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <a class="btn btn-login">Start</a>
+                </div>
+
+                <div class="page" *ngIf="task_data.type == 'page'">
+                    <p>Page</p>
+                </div>
+
+                <div class="user_submit mt-4" *ngIf="view_submit">
+                    <div class="card">
+                        <div class="card-body">
+                            <nav>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                  <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                                    type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i
+                                      class="fa-solid fa-house-user"></i> File</button>
+                                  <button class="nav-link" id="nav-content-tab" data-bs-toggle="tab" data-bs-target="#nav-file"
+                                    type="button" role="tab" aria-controls="nav-file" aria-selected="false"><i
+                                      class="fa-solid fa-list-check"></i> Text</button>
+                                </div>
+                            </nav>
+
+                            <div class="tab-content" id="nav-tabContent">
+                                <!--home Tab-->
+                                <div class="tab-pane show active fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <div class="">
+                                        <div class="container">
+                                            <div class="row">
+                                                <form action="" class="mt-3" (ngSubmit)="onSubmit()" [formGroup]="submitForm">
+                                                    
+                                                    <label for="">Comments</label>
+                                                    <textarea name="" placeholder="Submit Comments" class="form-control mt-2" formControlName="submit"></textarea>
+
+                                                    <button class="pull-right btn btn-primary mt-3" type="submit">Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="nav-file" role="tabpanel" aria-labelledby="nav-home-tab">
+                                    <div class="">
+                                        <h2>Home</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

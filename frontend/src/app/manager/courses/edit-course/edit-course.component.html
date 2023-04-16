@@ -1,0 +1,49 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+<app-navbar [user_details]="user_data"></app-navbar>
+<div class="main">
+    <div class="container">
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="login-card mt-4 ">
+              <div class="card-body fondo-amarillo">
+                <div class="title">
+                    <h1 *ngIf="id_course == 0">Create Course</h1>
+                    <h1 *ngIf="id_course != 0">Edit {{course_data.course_name}}</h1>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" id="course_name" placeholder="..." ngModel="{{course_data.course_name}}" formControlName="course_name" class="form-control" [ngClass]="(form.controls['course_name'].invalid && form.controls['course_name'].touched ? 'is-invalid' : '')">
+                    <label for="course_name">Course Name</label>
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                      Must be at least 3 characters.
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <select id="select_teacher" [ngClass]="(form.controls['id_teacher'].invalid && form.controls['id_teacher'].touched ? 'is-invalid' : '')" class="form-select form-control" ngModel="{{course_data.id_teacher}}" formControlName="id_teacher" required>
+                    <option value=""></option>
+                    <option value="{{teacher.id_user}}" *ngFor="let teacher of teachers">{{teacher.name}}</option>
+                  </select>
+                  <label for="select_teacher">Choose a teacher</label>
+                  <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                    Invalid, Teacher Required.
+                  </div>
+                </div>
+                <div class="form-floating mb-3 custom-file">
+                    <input type="file" id="img" formControlName="img" class="form-control" (change)="uploadImage($event)">
+                    <label for="img">Curse Image</label>
+                </div>
+                <div class="buttons">
+                  <button class="btn btn-login" type="submit" *ngIf="id_course != 0" [disabled]="alreadySubmit || form.invalid">Save</button>
+                  <button class="btn btn-login" type="submit" *ngIf="id_course == 0" [disabled]="alreadySubmit || form.invalid">Create</button>
+                  <a class="btn btn-exit" href="/manager">Cancel</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

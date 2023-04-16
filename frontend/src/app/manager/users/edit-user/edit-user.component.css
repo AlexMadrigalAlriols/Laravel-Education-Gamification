@@ -1,0 +1,16 @@
+.card{
+    padding: 2rem;
+    margin-top: 2rem;
+    background-color: var(--yellow);
+}
+
+.card h1{
+    color: var(--black) !important;
+    font-family: 'Gooseberry Juice', sans-serif;
+}
+
+.flexTextImg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

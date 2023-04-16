@@ -1,0 +1,94 @@
+    p{
+    margin: 0;
+}
+
+.titleFlex h1{
+    font-family: 'Gooseberry Juice', sans-serif;
+    color: var(--white);
+    margin: 0px;
+}
+
+.titleFlex .flexing{
+    display: flex;
+    align-items: center;
+}
+
+.titleFlex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.titleFlex a{
+    font-size: 20px;
+    color: var(--yellow);
+    margin-right: 1rem;
+    transition: transform .2s;
+}
+
+.titleFlex a:hover{
+    transform: scale(1.2);
+}
+
+.desc{
+    color: var(--white);
+    font-family: 'Rubik', sans-serif;
+    margin-top: 2rem;
+}
+
+.desc h6{
+    font-size: 25px;
+}
+
+.desc p{
+    font-size: 18px;
+}
+
+.file a:link{
+    text-decoration: underline;
+    cursor: pointer;
+    color: bloue !important;
+}
+
+.task .taskInfo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.task .taskInfo p, .task .taskInfo .enun{
+    color: var(--white);
+    margin: 0rem 1rem 0rem 1rem;
+}
+
+.btn-login{
+    margin: 0;
+    width: 200px;
+    color: var(--white);
+}
+
+.exam .flex2{
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    margin-top: 1rem;
+}
+
+.exam .time, .exam .date{
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 1rem 0rem 1rem;
+}
+
+.exam .time span, .exam .date span{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.exam .time p, .exam .date p{
+    font-size: 18px;    
+}
+

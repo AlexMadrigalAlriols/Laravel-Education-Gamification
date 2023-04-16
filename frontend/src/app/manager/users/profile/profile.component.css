@@ -1,0 +1,166 @@
+.userInfo{
+    padding: 1rem;
+}
+
+.userData p,  .userData span, .userInfo table tr td, .courses{
+    font-family: 'Rubik', sans-serif;
+    color: var(--black);
+    font-size: 20px;
+}
+
+.userInfo table tr td{
+    width: 120px;
+}
+
+.poper-info, .poper-info table tr td {
+    font-size: 20px !important;
+    width: 100% !important;
+}
+
+.userData span{
+    font-size: 18px;
+}
+
+.userData p{
+    margin: 0px;
+}
+
+.userData{
+    text-align: center;
+}
+
+.h2{
+    font-family: 'Gooseberry Juice', sans-serif;
+    color: var(--black);
+}
+
+.userTxt{
+    margin-top: 1rem;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.userInfo .btn-primary {
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    justify-content: center ;
+    font-family: 'Gooseberry Juice', sans-serif;
+    background-color: var(--red);
+    transition: 500ms;
+    color: var(--black);
+}
+
+.userInfo .btn-primary:hover {
+    background-color: var(--red);
+    box-shadow: rgba(255, 0, 0, 0.35) 0px 5px 15px;;
+}
+
+.btnSpace{
+    margin-top: 20px;
+    width: 200px;
+}
+
+.courses{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.card{
+    background-color: #EBEDF1;
+    max-width: 1000px;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.card.card-inverted {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 20px !important;
+    border-top-left-radius: 20px !important;
+}
+
+.card.card-regular {
+    background-color: #cecece;
+    border-bottom-right-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    border-top-left-radius: 25px !important;
+    box-shadow: none;
+}
+
+.progress{
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    background-color: #eee;
+}
+
+.nav-tabs{
+    border: none;
+}
+.nav-tabs .nav-link {
+    font-size: 22px;
+    background-color: #cccccc;
+    color: black;
+    border-color: #a0a0a0;
+    border-bottom: none !important;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #EBEDF1;
+    color: var(--purple-light);
+}
+
+.label {
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: text-bottom;
+    margin-left: 1rem;
+}
+
+.label:first-letter {
+    text-transform: uppercase !important;
+}
+
+.label.label-student {
+    background-color: var(--yellow);
+    color: white;
+}
+
+.label.label-teacher {
+    background-color: peru;
+    color: white;
+}
+
+.label.label-college_manager {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.label.label-admin {
+    background-color: greenyellow;
+    color: white;
+}
+
+.btn-login{
+    width: auto;
+    margin: 0px;
+}
+
+.flexTitle{
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-left {
+    text-align: left !important;
+}

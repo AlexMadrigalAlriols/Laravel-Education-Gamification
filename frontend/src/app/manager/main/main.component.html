@@ -1,0 +1,65 @@
+
+<app-loader *ngIf="!dataLoaded"></app-loader>
+<app-new-poper *ngIf="!hasPoper && (dataLoaded | async)"></app-new-poper>
+<main *ngIf="hasPoper && (dataLoaded | async)">
+    <app-navbar [user_details]="user_data"></app-navbar>
+
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="addCourse mb-4">
+                    <div class="titleFlex">
+                        <h1>Bienvenido/a a <span class="college-name me-3">{{user_data.college_name}}</span> <a class="btn btn-edit" href="/manager/college/{{user_data.id_college}}/edit" *ngIf="user_data.role == 'admin' || user_data.role == 'college_manager'"><i class="fa-regular fa-pen-to-square text-black"></i></a></h1> 
+                    </div>
+                    <div class="boton2">
+                        <a class="btn btn-login" href="/manager/course/edit/0" *ngIf="user_data.role == 'college_manager' ||  user_data.role == 'admin'"><i class="fa-solid fa-plus me-2"></i> Add Course</a>
+                    </div> 
+                </div>
+                
+                <div class="card" *ngIf="user_data.role == 'student'" type="button" data-bs-toggle="modal" data-bs-target="#enterCode">
+                    <div class="card-body">
+                        <i class="fa-solid fa-plus"></i>
+                        Enter code
+                        (El mas en grande y enter code abajo)
+                    </div>
+                </div>             
+                <a *ngFor="let course of user_data.courses" class="card text-decoration-none text-black" href="/manager/course/{{course.id_course}}">
+                    <div class="imgCurso">   
+                        <img src="{{(course.img != 'null' && course.img != ''  ? course.img : '/assets/img/defaultCourse.jpg')}}" class="card-img-top" alt="Imagen del Curso">
+                    </div>
+                    <div class="card-body">
+                        <h5>{{course.course_name}}</h5>
+                        <p><span>Teacher: </span>{{course.name}}</p> 
+                    </div>
+                    <div class="boton" *ngIf="user_data.role == 'college_manager' || user_data.role == 'teacher'|| user_data.role == 'admin'">
+                        <a class="btn btn-login" href="/manager/course/edit/{{course.id_course}}">Edit</a>
+                    </div>
+                </a> 
+            </div>  
+        </div>
+    </div>
+    <br>
+</main>
+
+<div class="modal fade" id="enterCode" tabindex="-1" aria-labelledby="enterCodeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-black" id="enterCodeLabel">Enter Code</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form (ngSubmit)="joinCourse()" [formGroup]="form">
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="code" formControlName="code" placeholder="name@example.com">
+                        <label for="floatingInput">Enter Code</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" #closebutton data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid"><i class="fa-solid fa-plus me-1"></i> Join Course</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

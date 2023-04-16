@@ -1,0 +1,40 @@
+
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+    <app-navbar [user_details]="user_data"></app-navbar>
+
+    <div class="main mt-3">
+        <div class="container">
+            <div class="row">
+                <div class="addCourse mb-4">
+                    <div class="titleFlex">
+                        <a href="/manager/course/{{id_course}}"><i class="fa-solid fa-angle-left fa-2xl"></i></a> 
+                        <h1 class="text-white">Student Requests</h1>
+                    </div>
+                </div> 
+                
+                <div class="card mb-3" *ngFor="let user of user_list">
+                    <div class="card-body">
+                        <div class="align-middle">
+                            <div style="float: left;" class="d-inline-block">
+                                <img src="{{user.profile_img}}" alt="" width="50px" class="d-inline-block">
+                                <span class="ms-4"><b>{{user.name}} {{user.last_name}}</b></span>
+                                <span class="ms-2">@{{user.nick}}</span>
+                            </div>
+                            <div style="float:right;" class="d-inline-block">
+                                <button class="btn btn-success me-3" type="button" (click)="submitRequest(user.id_user, true)"><i class="fa-solid fa-check me-1"></i> Accept</button>
+                                <button class="btn btn-danger me-3" (click)="submitRequest(user.id_user, false)"><i class="fa-solid fa-xmark me-1"></i> Deny</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div *ngIf="user_list.length == 0">
+                    <h5 class="text-white">No student request yet</h5>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <br>
+</main>

@@ -1,0 +1,163 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+    <app-navbar [user_details]="self_data"></app-navbar>
+    <div class="container mt-4">
+        <div class="row mb-4">
+            <div class="col-md-9 m-auto">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fa-solid fa-user"></i></button>
+                        <button class="nav-link" id="nav-poper-tab" data-bs-toggle="tab" data-bs-target="#nav-poper" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa-solid fa-paw"></i></button>
+                        <button class="nav-link" id="nav-badges-tab" data-bs-toggle="tab" data-bs-target="#nav-badges" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa-solid fa-shield"></i></button>
+                        <button class="nav-link" id="nav-inventory-tab" data-bs-toggle="tab" data-bs-target="#nav-inventory" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" *ngIf="selfProfile"><i class="fa-solid fa-box"></i></button>
+                    </div>
+                </nav>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- Profile Tab -->
+                            <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="row justify-content-center">
+                                    <div class="flexTitle">
+                                        <div>
+                                            <span class="p-1 ms-5 h2 d-inline-block"><i class="fa-solid fa-user me-2"></i> {{user_data.name}} {{user_data.last_name}}</span> 
+                                            <span class="d-inline-block label label-{{user_data.role}}">{{user_data.role}}</span>
+                                        </div>
+                                        <a href="/manager/user/edit/{{user_data.id_user}}" class="btn btn-login" *ngIf="selfProfile"><i class="fa-solid fa-pen-to-square me-1"></i> Edit Profile</a>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="userData column mt-4">
+                                            <img class="img-rounded" src="http://localhost:8000{{user_data.profile_img}}" alt="Profile image" width="175">
+                                            <div class="userTxt">
+                                                <p><span class="bold">@{{user_data.nick}}</span></p>
+                                            </div>
+                                            <div class="courses">
+                                                <table>
+                                                    <tr *ngFor="let course of user_data.courses; let i = index ">
+                                                        <td class="text-left"><i class="fa-solid fa-globe"></i> {{i + 1}}. {{course.course_name}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="userInfo">
+                                            <table>
+                                                <th colspan="2" class="h3"><i class="fa-solid fa-circle-info me-1 mb-4"></i> User Details</th>
+                                                <tr>
+                                                    <td class="bold">Name:</td>
+                                                    <td>{{user_data.name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bold">Last Name:</td>
+                                                    <td>{{user_data.last_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bold">Email:</td>
+                                                    <td>{{user_data.email}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bold">College:</td>
+                                                    <td>{{user_data.college_name}}</td>
+                                                </tr>
+                                            </table>
+                                            <div class="btnSpace">
+                                                <a href="#" class="btn-primary text-white p-1" type="button" *ngIf="selfProfile"><i class="fa-solid fa-key me-1"></i> Change Password</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Poper Tab -->
+                            <div class="tab-pane fade" id="nav-poper" role="tabpanel" aria-labelledby="nav-poper-tab">
+                                <div class="row justify-content-center">
+                                    
+                                    <div class="col-md-6">
+                                        <div class="container">
+                                            <div class="card card-inverted mt-4">
+                                                <div class="card-header text-center">
+                                                    <span class="h5">{{user_data.name}} - Lvl. {{user_data.level}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="text-center py-4" style="background-image: url('/assets/img/backgrounds/1_background.jpg');">
+                                                <img src="{{user_data.skin.skin_base}}" alt="Profile image" width="175">
+                                            </div>
+                                            <div class="userData w-100 card mb-2">
+                                                <div class="card-body">
+                                                    <p>Exp. 0/1000</p>
+                                                    <div class="progress m-auto">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%;" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="userInfo poper-info">
+                                            <table>
+                                                <th colspan="2" class="h3"><i class="fa-solid fa-paw me-1 mb-4"></i> Poper Stats</th>
+                                                <tr>
+                                                    <td class="bold"><i class="fa-solid fa-heart me-2"></i> Health:</td>
+                                                    <td style="text-align: right;">{{user_data.stats_base.health}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bold"><i class="fa-solid fa-dumbbell me-2"></i> Strength:</td>
+                                                    <td style="text-align: right;">{{user_data.stats_base.strength}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bold"><i class="fa-solid fa-leaf me-2"></i> Element:</td>
+                                                    <td style="text-align: right;"><span class="label label-{{user_data.element}}">{{user_data.element}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="bold"><i class="fa-solid fa-trophy me-2"></i> Wins:</td>
+                                                    <td style="text-align: right;">5</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="userInfo poper-info">
+                                            <table class="w-100">
+                                                <th colspan="2" class="h3"><i class="fa-solid fa-fire me-1 mb-4"></i> Abilities</th>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div class="card card-regular">
+                                                            <div class="card-body p-3">
+                                                                <div>
+                                                                    <span class="me-2">Phantom Force</span>
+                                                                    <span style="float: right;" class="label label-psyco">Psyco</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Badges Tab-->
+                            <div class="tab-pane fade" id="nav-badges" role="tabpanel" aria-labelledby="nav-badges-tab">
+                                <div class="userInfo">
+                                    <h2><i class="fa-solid fa-paw"></i> Badges</h2>
+                                </div>
+                            </div>
+                            <!--End Badges Tab-->
+
+                            <!--Inventory Tab-->
+                            <div class="tab-pane fade" id="nav-inventory" role="tabpanel" aria-labelledby="nav-inventory-tab" *ngIf="selfProfile">
+                                <div class="userInfo">
+                                    <h2><i class="fa-solid fa-box"></i> Inventory</h2>
+                                </div>
+                            </div>
+                            <!--End inventory Tab-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

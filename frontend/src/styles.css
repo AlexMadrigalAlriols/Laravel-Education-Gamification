@@ -1,0 +1,276 @@
+/* Fuentes Principales */
+@import url('https://fonts.cdnfonts.com/css/gooseberry-juice');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+/*Variables de colores*/
+:root {
+  --purple: #351f41;
+  --purple-light: #8100c7;
+  --yellow: #FFB544;
+  --white: #fff;
+  --black: #000;
+  --red: #C14B57;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-image: url(./assets/img/backgroundCake.png);
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #C8C8C8 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 20px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #eee;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #C8C8C8;
+    border-radius: 10px;
+  }
+
+
+ul {
+  list-style: none;
+  margin: 0px;
+}
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: black;
+}
+
+/*Login y registro*/
+.login-container {
+  background-image: url("/assets/img/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  display: flex;
+}
+
+.login-card {
+  align-items: center;
+  justify-content: center;
+}
+
+.fondo-amarillo  {
+  border-radius: 50px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(--yellow);
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+/* Boton Login*/
+.btn-login {
+  width: 100%;
+  border-radius: 15px;
+  height: 40px;
+  margin-top: 20px;
+  font-family: 'Gooseberry Juice', sans-serif;
+  font-size: large;
+  color: var(--purple);
+  background-color: transparent;
+  border: 2px solid var(--purple);
+  transition: .3s transform ease-in-out;
+  will-change: transform;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.btn-login::after {
+  background-color: var(--purple);
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-100%, 0) rotate(10deg);
+  transform-origin: top left;
+  transition: .3s transform ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.btn-login:hover::after {
+  transform: translate(0, 0);
+}
+
+.btn-login:hover {
+  color: var(--yellow);
+  background-color: var(--purple);
+  border: 2px solid transparent;
+  transform: scale(1.05);
+  will-change: transform;
+}
+
+/* END Boton Login*/
+
+
+/* Boton Exit*/
+.btn-exit {
+  width: 100%;
+  border-radius: 15px;
+  height: 40px;
+  margin-top: 10px;
+  font-family: 'Gooseberry Juice', sans-serif;
+  font-size: large;
+  color: var(--red) !important;
+  background-color: transparent;
+  border: 2px solid var(--red);
+  transition: .3s transform ease-in-out;
+  will-change: transform;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.btn-exit::after {
+  background-color: var(--red);
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-100%, 0) rotate(10deg);
+  transform-origin: top left;
+  transition: .3s transform ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.btn-exit:hover::after {
+  transform: translate(0, 0);
+}
+
+.btn-exit:hover {
+  color: var(--white) !important;
+  background-color: var(--red);
+  border: 2px solid transparent;
+  transform: scale(1.05);
+  will-change: transform;
+}
+
+.text-center {
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+}
+
+table{
+  font-family: 'Rubik', sans-serif;
+}
+
+.form-floating label {
+  font-family: 'Gooseberry Juice', sans-serif;
+  color: var(--white) !important;
+}
+
+.form-floating input, .form-floating textarea {
+  font-family: 'Rubik', sans-serif;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  color: var(--white);
+  padding-left: 10px;
+  background-image: linear-gradient(#AF0AEB, #73009C);
+}
+
+.form-floating textarea, .form-floating textarea:focus{
+  height: 4rem !important;
+  color: var(--white);
+}
+
+.form-floating input.is-invalid {
+  color: black !important;
+  background: linear-gradient(#AF0AEB, #73009C) !important;
+}
+
+.form-floating {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.logo {
+  width: 270px;
+}
+
+.form-control:focus {
+  border-color: #AF0AEB !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #AF0AEB;
+}
+
+.form-floating input:focus {
+  color: var(--white);
+}
+
+.purpul{
+  color: var(--black);
+}
+
+/*End Login y registro*/
+
+.label.label-wild {
+  background: linear-gradient(0deg, rgba(3,164,3,1) 0%, rgba(9,226,12,1) 92%);
+  color: white;
+}
+.label.label-psyco {
+  background: linear-gradient(0deg, rgba(127,3,164,1) 0%, rgba(190,1,218,1) 92%);
+  color: white;
+}
+.label.label-water {
+  background: linear-gradient(0deg, rgba(3,106,164,1) 0%, rgba(9,166,226,1) 92%);
+  color: white;
+}
+
+.form-floating select{
+  font-family: 'Rubik', sans-serif !important; 
+  border-radius: 15px !important;
+  border: 2px solid transparent !important;
+  color: var(--white) !important;
+  padding-left: 10px !important;
+  background-color: #9105C4 !important;
+}
+
+.form-select{
+  --bs-form-select-bg-img: url(/assets/img/down.png) !important;
+}
+
+input::-webkit-file-upload-button{
+  color: var(--white) !important;
+  font-weight: bold !important;
+  background-color: transparent !important;
+}
+
+.pull-right {
+  float: right !important;
+}

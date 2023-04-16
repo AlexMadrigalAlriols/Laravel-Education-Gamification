@@ -1,0 +1,74 @@
+.titleFlex h1{
+    font-family: 'Gooseberry Juice', sans-serif;
+    color: var(--white);
+    margin: 0px;
+}
+
+
+.titleFlex{
+    display: flex;
+    align-items: center;
+
+}
+
+.titleFlex a{
+    font-size: 20px;
+    color: var(--yellow);
+    margin-right: 1rem;
+    transition: transform .2s;
+}
+
+.titleFlex a:hover{
+    transform: scale(1.2);
+}
+
+.addCourse{
+    margin-top: 1rem;
+}
+
+.balls .btn-login{
+    border-radius: 50% !important;
+    width: 120px;
+    height: 120px;
+    padding: 0px;
+    background-color: var(--purple);
+    overflow: visible;
+}
+
+.balls{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.flexDentro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+    color: var(--yellow);
+    position: relative;
+}
+
+.flexDentro i{
+    margin: 20px;
+}
+
+.flexDentro .badges {
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.balls .btn-login::after{
+    background-color: transparent;
+}

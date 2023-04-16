@@ -1,0 +1,29 @@
+
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+    <app-navbar [user_details]="user_data"></app-navbar>
+
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="titleFlex">
+                    <a href="/manager"><i class="fa-solid fa-angle-left fa-2xl"></i></a> 
+                    <h1 class="text-white">CURSO {{course_data.course_name}}<span *ngIf="user_data.role == 'teacher' || user_data.role == 'college_manager' || user_data.role == 'admin'"> - {{this.code}} <button class="btn btn-secondary btn-refresh" (click)="refreshCode()" [disabled]="refreshDisabled" ><i class="fa-solid fa-arrows-rotate first-child"></i></button></span></h1>   
+                </div>
+                    <div class="balls mt-5">
+                        <a href="/manager/course/{{id_course}}/users" class="btn btn-login flexDentro" *ngIf="user_data.role == 'teacher' || user_data.role == 'college_manager' || user_data.role == 'admin'"><i class="fa-solid fa-address-book fa-2xl"></i> User List</a>
+                        <a href="/manager/course/{{id_course}}/ranking" class="btn btn-login flexDentro"><i class="fa-solid fa-ranking-star fa-2xl"></i> Ranking</a>
+                        <a href="/manager/course/{{id_course}}/requests" class="btn btn-login flexDentro" *ngIf="user_data.role == 'teacher' || user_data.role == 'college_manager' || user_data.role == 'admin'">
+                            <i class="fa-solid fa-code-pull-request fa-2xl"></i> 
+                            Requests
+                            <span class="badges" *ngIf="course_data.requests.length > 0">{{course_data.requests.length}}</span>
+                        </a>
+                        <a href="/manager/course/{{id_course}}/shop" class="btn btn-login flexDentro"><i class="fa-solid fa-shop fa-2xl"></i> Shop</a>
+                        <a href="/manager/course/{{id_course}}/tasks" class="btn btn-login flexDentro"><i class="fa-solid fa-list-check fa-2xl"></i> Tasks</a>
+                    </div>
+            </div>  
+        </div>
+    </div>
+    <br>
+</main>

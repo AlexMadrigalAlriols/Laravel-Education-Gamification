@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-5 m-auto">
+            <div class="card">
+                <div class="bg-hero">
+                    <img src="{{actual_poper.background}}" class="background">
+                    <img class="poper" src="{{actual_poper.img}}" width="150px">
+                    <label class="label label-{{actual_poper.element}}">{{actual_poper.element}}</label>
+                    <button class="left-arrow" *ngIf="actual_poper_id > 0" (click)="prev()"><i class="fa-solid fa-circle-arrow-left"></i></button>
+                    <button class="right-arrow" *ngIf="actual_poper_id < popers.length - 1" (click)="next()"><i class="fa-solid fa-circle-arrow-right"></i></button>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="course_name">Poper Name</label>
+                            <input type="text" [ngClass]="(form.controls['poper_name'].invalid && form.controls['poper_name'].touched ? 'is-invalid' : '')" id="course_name" formControlName="poper_name" class="form-control">
+                            <div id="validationRole" class="invalid-feedback">
+                                Must be at least 2 characters
+                            </div>
+                        </div>
+    
+                        <div class="stats">
+                            <div class="stats-header">
+                                <span class="h6 d-inline-block">Stats</span>
+                                <span style="float:right;">Points Left: <b [ngClass]="this.points < 0 ? 'text-danger' : ''">{{points}}</b></span>
+                            </div>
+                            <label for="vitality" class="form-label">Vitality</label>
+                            <input type="range" class="form-range" min="0" max="5" id="vitality" formControlName="vitality" (ngModelChange)="checkPoints()" readonly>
+    
+                            <label for="velocity" class="form-label">Velocity</label>
+                            <input type="range" class="form-range" min="0" max="5" id="velocity" formControlName="velocity" (ngModelChange)="checkPoints()">
+    
+                            <label for="epower" class="form-label">Elemental Power</label>
+                            <input type="range" class="form-range" min="0" max="5" id="epower" formControlName="epower" (ngModelChange)="checkPoints()">
+                        </div>
+    
+                        <div class="bottom">
+                            <button class="btn btn-login" [disabled]="points < 0 || form.invalid">Create Poper</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

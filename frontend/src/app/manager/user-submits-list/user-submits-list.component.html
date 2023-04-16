@@ -1,0 +1,78 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+    <app-navbar [user_details]="user_data"></app-navbar>
+
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="titleFlex">
+                    <div class="flexing">
+                        <a href="#"><i class="fa-solid fa-angle-left fa-2xl"></i></a> 
+                        <h1 class="text-white">UF1 - {{task_data.title}}</h1>   
+                    </div>
+                </div>
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Mark</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td scope="row">Ruben</td>
+                        <td>Lechosa</td>
+                        <td>No entregado</td>
+                        <td>10</td>
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Set Mark</button></td>
+                      </tr>
+                      <tr>
+                        <td scope="row">Alex</td>
+                        <td>Madrigal</td>
+                        <td>Entregado tarde</td>
+                        <td>9</td>
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Set Mark</button></td>
+                      </tr>
+                      <tr>
+                        <td scope="row">Eric</td>
+                        <td>Escabias</td>
+                        <td>Entregado</td>
+                        <td>8</td>
+                        <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Set Mark</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Set Mark</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-floating mb-3">
+                                    <input type="number" id="mark" class="form-control" placeholder="0">
+                                    <label for="mark">Mark</label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+</main>

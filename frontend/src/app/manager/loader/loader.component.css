@@ -1,0 +1,48 @@
+
+body {
+    height: 100% !important;
+}
+
+.loader-container {
+    background-image: url("/assets/img/backgroundSimple.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100% !important;
+    min-width: 100% !important;
+    display: flex;
+}
+
+.logoLoader {
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    animation: logo 1s ease-in-out 0s infinite alternate-reverse none;
+}
+
+@keyframes logo {
+	0%,
+	100% {
+		transform: translateX(0%);
+		transform-origin: 50% 50%;
+	}
+
+	15% {
+		transform: translateX(-30px) rotate(-6deg);
+	}
+
+	30% {
+		transform: translateX(15px) rotate(6deg);
+	}
+
+	45% {
+		transform: translateX(-15px) rotate(-3.6deg);
+	}
+
+	60% {
+		transform: translateX(9px) rotate(2.4deg);
+	}
+
+	75% {
+		transform: translateX(-6px) rotate(-1.2deg);
+	}
+}

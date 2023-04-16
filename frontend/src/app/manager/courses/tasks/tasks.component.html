@@ -1,0 +1,155 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+  <app-navbar [user_details]="user_data"></app-navbar>
+  <div class="main mt-3">
+    <div class="container">
+      <div class="addCourse mb-4">
+        <div class="titleFlex">
+          <div class="navFlex">
+            <a href="/manager/course/{{id_course}}"><i class="fa-solid fa-angle-left fa-2xl"></i></a>
+            <h1 class="text-white">{{course_data.course_name}}</h1>
+          </div>
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+                type="button" role="tab" aria-controls="nav-profile" aria-selected="true"><i
+                  class="fa-solid fa-house-user"></i> Home</button>
+              <button class="nav-link" id="nav-content-tab" data-bs-toggle="tab" data-bs-target="#nav-content"
+                type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i
+                  class="fa-solid fa-list-check"></i> Content</button>
+              <button class="nav-link" id="nav-forum-tab" data-bs-toggle="tab" data-bs-target="#nav-forum" type="button"
+                role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fa-brands fa-wpforms"></i>
+                Forum</button>
+              <button class="nav-link" id="nav-marks-tab" data-bs-toggle="tab" data-bs-target="#nav-marks" type="button"
+                role="tab" aria-controls="nav-profile" aria-selected="false" *ngIf="user_data.role == 'teacher'"><i class="fa-solid fa-check"></i>
+                Marks</button>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <div class="tab-content" id="nav-tabContent">
+        <!--home Tab-->
+        <div class="tab-pane show active fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="">
+            <h2>Home</h2>
+          </div>
+        </div>
+        <!--End home Tab-->
+
+        <!--content Tab-->
+        <div class="tab-pane fade" id="nav-content" role="tabpanel" aria-labelledby="nav-content-tab">
+          <div class="row mb-4">
+            <div class="text-end">
+              <a class="btn btn-login w-25" href="{{'/manager/course/'+id_course+'/edit-task/0'}}" *ngIf="user_data.role == 'teacher' || user_data.role == 'college_manager' || user_data.role == 'admin'"><i
+                  class="fa-solid fa-plus me-2"></i> New Task</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="accordion" id="accordionExample" *ngFor="let category of tasks_list">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne">
+                    {{category.title}}
+                  </button>
+                </h2>
+
+                <div *ngFor="let task of category.tasks" id="collapseOne" class="accordion-collapse collapse show"
+                  aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    
+                      <button [disabled]="alreadySubmit" class="btn btn-danger me-3"
+                        *ngIf="user_data.role == 'teacher' || user_data.role == 'college_manager' || user_data.role == 'admin'"
+                        (click)="deleteTask(task.id_tasks)"><i class="fa-solid fa-minus m-0"></i></button>
+                        <a href="{{'/manager/course/'+id_course+'/tasks/'+task.id_tasks}}">
+                          <i class="icon {{task.type}}"></i>{{task.title}}
+                        </a>
+                    <a href="{{'/manager/course/'+id_course+'/edit-task/'+task.id_tasks}}"
+                      class="btn btn-secondary pull-right ms-3 text-white"
+                      *ngIf="user_data.role == 'teacher' || user_data.role == 'college_manager' || user_data.role == 'admin'"><i
+                        class="fa-solid fa-pen-to-square m-0"></i></a>
+                    <span class="pull-right text-muted" *ngIf="task.type == 'task' || task.type == 'exam'">0/100</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End content Tab-->
+
+        <!--forum Tab-->
+        <div class="tab-pane fade" id="nav-forum" role="tabpanel" aria-labelledby="nav-forum-tab">
+          <div class="">
+            <h2>Forum</h2>
+          </div>
+        </div>
+        <!--End forum Tab-->
+
+        <!--marks Tab-->
+        <div class="tab-pane fade" id="nav-marks" role="tabpanel" aria-labelledby="nav-marks-tab">
+          <div class="">
+            <div class="row mb-4">
+              <div class="text-end">
+                <a class="btn btn-login w-25" href="#"><i class="fa-solid fa-print"></i> Print Marks</a>
+              </div>
+            </div>
+
+            <div class="marks">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Mark</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let submit of submits_list">
+                    <th><a href="#">Nombre Tarea </a></th>
+                    <th><a href="#">MYKETOWERS69 </a></th>
+                    <td>{{submit.created_at}}</td>
+                    <td><span class="onTime">On Time</span></td>
+                    <td><span>{{submit.mark}}</span></td>
+                    <td class="comment"><a (click)="openMarkModal(submit.id_users_submits)"><i class="fa-solid fa-inbox"></i> <span>1</span></a></td>  
+                    <a href="#" class="d-none" data-bs-toggle="modal" data-bs-target="#addCategory" #openModal></a>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--End marks Tab-->
+      </div>
+    </div>
+  </div>
+
+          <!-- Modal -->
+<div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addStudentLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addStudentLabel"><i class="fa-solid fa-user-plus"></i> Add Mark</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form (ngSubmit)="onsubmitMark()" [formGroup]="markForm">
+              <div class="modal-body">
+                <div class="form-floating mb-3">
+                  <input type="number" max="10" id="title" placeholder="..." formControlName="mark" class="form-control">
+                  <label for="title">Mark</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-login"><i class="fa-solid fa-plus me-1"></i> Add Mark</button>
+                  <button type="button" class="btn btn-exit" #closeCategoryModal data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-1"></i> Cancel</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+</main>

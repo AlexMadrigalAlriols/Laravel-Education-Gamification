@@ -1,0 +1,110 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+    <app-navbar [user_details]="user_data"></app-navbar>
+    <div class="main">
+        <div class="container">
+          <form (ngSubmit)="onSubmit()" [formGroup]="form">
+            <div class="row justify-content-center">
+              <div class="col-md-6">
+                <div class="login-card mt-4 ">
+                  <div class="card-body fondo-amarillo">
+                    <div class="title">
+                        <h1 *ngIf="id_task == 0">New Task</h1>
+                        <h1 *ngIf="id_task != 0">Edit {{task_data.title}}</h1>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" id="title" placeholder="..." ngModel="{{task_data.title}}" formControlName="title" class="form-control" [ngClass]="(form.controls['title'].invalid && form.controls['title'].touched ? 'is-invalid' : '')">
+                        <label for="title">Title</label>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Must be at least 2 characters.
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" rows="8" placeholder="Leave a comment here" ngModel="{{task_data.description}}" formControlName="description"></textarea>
+                        <label for="floatingTextarea" class="">Description</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select id="select_category" [ngClass]="(form.controls['id_category'].invalid && form.controls['id_category'].touched ? 'is-invalid' : '')" class="form-select form-control" ngModel="{{task_data.id_category}}" formControlName="id_category" required>
+                            <option value=""></option>
+                            <option value="{{category.id_category}}" *ngFor="let category of categories">{{category.title}}</option>
+                        </select>
+                        <label for="select_category">Choose a Category</label>
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#addCategory" >New Category</a>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Invalid, Category Required.
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select id="select_category" [ngClass]="(form.controls['type'].invalid && form.controls['type'].touched ? 'is-invalid' : '')" class="form-select form-control" ngModel="{{task_data.type}}" formControlName="type" required>
+                            <option value=""></option>
+                            <option value="{{type.toLowerCase()}}" *ngFor="let type of task_types">{{type}}</option>
+                        </select>
+                        <label for="select_category">Choose a Type</label>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Invalid, Type Required.
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" id="title" placeholder="..." ngModel="{{task_data.limit_date}}" formControlName="limit_date" class="form-control">
+                        <label for="title">Limit Date</label>
+                    </div>
+                    
+                    <div class="w-100" *ngIf="form.controls['type'].value == 'task'">
+                      <h6>Task Settings</h6>
+                      <div class="form-floating mb-3">
+                        <input type="number" id="percentage" min="0" placeholder="..." ngModel="{{task_data.percentage}}" formControlName="percentage" class="form-control">
+                        <label for="percentage">Percentage</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="number" id="max_mark" min="0" placeholder="..." ngModel="{{task_data.max_mark}}" formControlName="max_mark" class="form-control">
+                        <label for="max_mark">Max Mark</label>
+                      </div>
+                    </div>
+
+                    <div class="w-100" *ngIf="form.controls['type'].value == 'page'">
+                        Page
+                    </div>
+                    <div class="w-100" *ngIf="form.controls['type'].value == 'link'">
+                        Link
+                    </div>
+                    <div class="w-100" *ngIf="form.controls['type'].value == 'file'">
+                        File
+                    </div>
+                    <div class="buttons w-100">
+                      <button class="btn btn-login" type="submit" *ngIf="id_task != 0" [disabled]="alreadySubmit || form.invalid">Save</button>
+                      <button class="btn btn-login" type="submit" *ngIf="id_task == 0" [disabled]="alreadySubmit || form.invalid">Create</button>
+                      <a class="btn btn-exit" href="{{'/manager/course/' + id_course + '/tasks'}}">Cancel</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+        <!-- Modal -->
+<div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="addStudentLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="addStudentLabel"><i class="fa-solid fa-user-plus"></i> Add Category</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form (ngSubmit)="onSubmitCategory()" [formGroup]="categoryForm">
+              <div class="modal-body">
+                <div class="form-floating mb-3">
+                  <input type="text" id="title" placeholder="..." formControlName="title" class="form-control" [ngClass]="(categoryForm.controls['title'].invalid && categoryForm.controls['title'].touched ? 'is-invalid' : '')">
+                  <label for="title">Title</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-login"><i class="fa-solid fa-plus me-1"></i> Add Category</button>
+                  <button type="button" class="btn btn-exit" #closeCategoryModal data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-1"></i> Cancel</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+    </main>
+    

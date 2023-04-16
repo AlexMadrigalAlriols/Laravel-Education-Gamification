@@ -1,0 +1,50 @@
+<app-loader *ngIf="!dataLoaded"></app-loader>
+
+<main *ngIf="dataLoaded | async">
+  <app-navbar [user_details]="user_data"></app-navbar>
+
+  <div class="main">
+    <div class="container">
+      <div class="row">
+        <div class="addCourse mb-4">
+          <div class="titleFlex">
+            <a href="/manager/course/{{id_course}}"><i class="fa-solid fa-angle-left fa-2xl"></i></a>
+            <h1>Ranking</h1>
+          </div>
+          <div class="boton2">
+            <button *ngIf="ranking_list" (click)="changeType()" class="btn btn-login">CHANGE to grafic</button>
+            <button *ngIf="!ranking_list" (click)="changeType()" class="btn btn-login">CHANGE to Table</button>
+          </div>
+        </div>
+
+        <div *ngIf="ranking_list">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nick</th>
+                <th scope="col">Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Nº de Pepas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of ranking; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>@{{user.nick}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.last_name}}</td>
+                <td>{{user.pepas}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="!ranking_list">
+          Grafic
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</main>

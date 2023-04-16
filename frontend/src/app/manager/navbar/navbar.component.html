@@ -1,0 +1,63 @@
+<header class="site-header">
+    <nav class="navbar container navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand logoNav" href="/manager">
+            <img class="logoNav" src="{{user_details.logo}}" alt="Logo" width="175">
+          </a>
+          <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggler-icon top-bar"></span>
+            <span class="toggler-icon middle-bar"></span>
+            <span class="toggler-icon bottom-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa-solid fa-folder-open"></i> Courses</a>
+              </li>
+              <li class="nav-item"> 
+                <a class="nav-link" href="#"><i class="fa-solid fa-box"></i> Inventory</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa-solid fa-trophy"></i> Tournaments</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="http://localhost:8000{{user_details.profile_img}}" class="userImg" alt="Foto User">{{user_details.nick}}
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item bg-transparent" href="/manager/user/{{user_details.id_user}}"><i class="fa-solid fa-user"></i> Profile</a></li>
+                  <li><a class="dropdown-item bg-transparent" href="#"><i class="fa-solid fa-wrench"></i> Settings</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item bg-transparent navExit" type="button" data-bs-toggle="modal" data-bs-target="#logout"><i class="fa-solid fa-right-from-bracket"></i> Exit</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
+
+<a href="https://www.goldrushfusion.com" target="_blank">
+  <div class="static-powered">
+    <img class="logoNav" src="./assets/img/poweredBy.png" alt="Logo" width="120">
+  </div>
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="logoutLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="logoutLabel"><i class="fa-solid fa-right-from-bracket"></i> Are you sure?</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            You want to log out?
+          </div>
+          <div class="modal-footer">
+              <button type="submit" class="btn btn-login" (click)="logout()" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-plus me-1"></i> Confirm</button>
+              <button type="button" class="btn btn-exit" #closebutton data-bs-dismiss="modal"><i class="fa-solid fa-xmark me-1"></i> Cancel</button>
+          </div>
+      </div>
+  </div>
+</div>

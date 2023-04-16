@@ -1,0 +1,108 @@
+h1 {
+  color: var(--white);
+  font-family: 'Gooseberry Juice', sans-serif;
+}
+
+.row {
+  margin-bottom: 5rem !important;
+}
+
+.boton a {
+  width: 100%;
+  border: 0px !important;
+}
+
+.boton .btn-login {
+  border-radius: 5px;
+}
+
+.addCourse .btn-login {
+  border: 1px solid var(--yellow);
+  color: var(--yellow);
+}
+
+.addCourse .btn-login:hover {
+  border: 1px solid transparent;
+}
+
+.imgCurso img{
+  width: 100% !important;
+  height: 150px;
+  object-fit: cover;
+}
+
+.btn-card-a h5,
+.btn-card-a p,
+.btn-card-a p span {
+  transition: 500ms;
+  margin: 0px;
+  padding: 0px;
+}
+
+.btn-card-a:hover {
+  color: var(--purple);
+}
+
+.card {
+  padding: 0px;
+  margin-left: 20px;
+  margin-top: 2rem;
+  width: 15rem;
+  --bs-card-border-width: 0px !important;
+}
+
+.titleFlex{
+    display: flex;
+    align-items: center;
+
+}
+
+.titleFlex a{
+    font-size: 20px;
+    color: var(--yellow);
+    margin-right: 1rem;
+    transition: transform .2s;
+}
+
+.titleFlex a:hover{
+    transform: scale(1.2);
+}
+
+.addCourse .boton2 .btn-login:hover {
+    border: 2px solid var(--purple);
+}
+
+.addCourse{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.addCourse .boton2 .btn-login{
+    width: auto !important;
+    margin: 0px;
+    color: var(--yellow);
+    border: 2px solid var(--yellow);
+}
+
+.btn-login{
+    margin-top: 0px;
+}
+
+@media screen and (max-width: 80rem) {
+    .card {
+        width: 90%;
+        margin: 1rem;
+      }
+}
+
+.college-name {
+  color: var(--yellow);
+}
+
+.btn-edit {
+  background-color: var(--yellow);
+  color: black;
+}
