@@ -31,4 +31,4 @@ ng s
 
 # Funcionamiento
 Para probar esta la cuenta principal con el maximo rol:
-test@alex.com - password
+alex@test.com - password
